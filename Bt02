@@ -1,1 +1,45 @@
 
+const http = require('http');
+
+const PORT = 3000;
+
+const server = http.createServer(function (request, response) {
+
+    let url = request.url;
+
+    if (url === '/') {
+        response.writeHead(200, {
+            'Content-Type': 'text/html; charset=utf-8'
+        });
+
+        response.write('<h1>CHÀO MỪNG BẠN ĐẾN VỚI NODE.JS</h1>');
+        response.write('<p>Xin chào! Đây là trang chủ của tôi.</p>');
+        response.write('<p>Mã sinh viên: CD-CNTT18A24</p>');
+        response.end();
+
+    } else if (url === '/about') {
+        response.writeHead(200, {
+            'Content-Type': 'text/html; charset=utf-8'
+        });
+
+        response.write('<h1>THÔNG TIN CÁ NHÂN</h1>');
+        response.write('<p>Họ tên: Hà Văn Sâm </p>');
+        response.write('<p>Tuổi: 20</p>');
+        response.write('<p>Lớp: Công nghệ thông tin</p>');
+        response.write('<p>Sở thích: Lập trình và công nghệ.</p>');
+        response.end();
+
+    } else {
+        response.writeHead(404, {
+            'Content-Type': 'text/html; charset=utf-8'
+        });
+
+        response.end('<h1>404 - PAGE NOT FOUND</h1>');
+    }
+
+});
+
+server.listen(PORT, function () {
+    console.log(`Máy chủ đang chạy tại http://localhost:${PORT}`);
+});
+
